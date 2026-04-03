@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daiiv's Cookbook 👨🏽‍🍳</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6e3;
+    --parchment: #f5e6c8;
+    --warm-brown: #6b3f1f;
+    --deep-red: #8b1a1a;
+    --bistro-red: #c0392b;
+    --golden: #d4a017;
+    --olive: #5a6e2c;
+    --dark-olive: #3d4a1d;
+    --charcoal: #2c2c2c;
+    --ink: #1a1208;
+    --soft-gray: #7a7060;
+    --accent-gold: #b8860b;
+    --paris-blue: #2c3e6b;
+    --light-cream: #fefbf3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(180,140,60,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139,26,26,0.06) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8860b' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    font-family: 'Lora', Georgia, serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(160deg, var(--deep-red) 0%, #5a1010 40%, #3a0a0a 100%);
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M40 0C17.9 0 0 17.9 0 40s17.9 40 40 40 40-17.9 40-40S62.1 0 40 0zm0 70C23.4 70 10 56.6 10 40S23.4 10 40 10s30 13.4 30 30-13.4 30-30 30z'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .header-ornament {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .header-subtitle-top {
+    font-family: 'Dancing Script', cursive;
+    color: var(--golden);
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    text-shadow: 3px 4px 12px rgba(0,0,0,0.5);
+    letter-spacing: -1px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--golden);
+  }
+
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 24px auto;
+    max-width: 400px;
+  }
+
+  .header-divider::before,
+  .header-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--golden), transparent);
+  }
+
+  .header-divider span {
+    color: var(--golden);
+    font-size: 1.2rem;
+  }
+
+  .header-tagline {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: rgba(253,246,227,0.75);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .paris-skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0,60 L0,40 L50,40 L50,35 L60,35 L60,20 L65,20 L65,15 L70,10 L75,15 L75,20 L80,20 L80,35 L90,35 L90,40 L140,40 L140,45 L200,45 L200,35 L220,35 L220,25 L230,25 L230,35 L280,35 L280,45 L340,45 L340,38 L360,38 L360,30 L370,30 L370,38 L420,38 L420,45 L480,45 L480,40 L510,40 L510,32 L520,32 L520,25 L525,20 L530,25 L530,32 L540,32 L540,40 L600,40 L600,45 L650,45 L650,42 L670,42 L670,35 L680,35 L680,42 L730,42 L730,45 L800,45 L800,38 L830,38 L830,30 L840,30 L840,38 L880,38 L880,45 L940,45 L940,40 L960,40 L960,32 L970,28 L975,20 L980,28 L985,32 L985,40 L1010,40 L1010,45 L1060,45 L1060,38 L1080,38 L1080,45 L1140,45 L1140,40 L1200,40 L1200,60 Z' fill='%23fdf6e3' opacity='0.08'/%3E%3C/svg%3E") no-repeat bottom center;
+    background-size: cover;
+    pointer-events: none;
+  }
+
+  /* ===== NAV ===== */
+  .nav-container {
+    background: var(--warm-brown);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+
+  .nav {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: rgba(253,246,227,0.7);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    border-bottom: 3px solid transparent;
+    position: relative;
+  }
+
+  .nav-btn:hover {
+    color: var(--golden);
+    border-bottom-color: var(--golden);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .nav-btn.active {
+    color: var(--golden);
+    border-bottom-color: var(--golden);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ===== SECTION ===== */
+  .meal-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .meal-section.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    text-align: center;
+    padding: 60px 0 40px;
+    position: relative;
+  }
+
+  .section-emoji {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    font-style: italic;
+    color: var(--deep-red);
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--golden), transparent);
+    margin-top: 10px;
+  }
+
+  .section-desc {
+    font-style: italic;
+    color: var(--soft-gray);
+    margin-top: 12px;
+    font-size: 0.95rem;
+  }
+
+  /* ===== RECIPE GRID ===== */
+  .recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+  }
+
+  /* ===== RECIPE CARD ===== */
+  .recipe-card {
+    background: var(--light-cream);
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px var(--parchment), 6px 6px 0px rgba(107,63,31,0.12), 0 8px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(180,140,60,0.2);
+    cursor: pointer;
+  }
+
+  .recipe-card:hover {
+    transform: translateY(-4px) rotate(0.3deg);
+    box-shadow: 4px 4px 0px var(--parchment), 8px 8px 0px rgba(107,63,31,0.15), 0 16px 40px rgba(0,0,0,0.12);
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--deep-red), #6e1515);
+    padding: 20px 24px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .card-header.breakfast { background: linear-gradient(135deg, #c07830, #8a4f1a); }
+  .card-header.lunch { background: linear-gradient(135deg, #2d6e3a, #1a4a25); }
+  .card-header.evening { background: linear-gradient(135deg, #5a3a7a, #38224d); }
+  .card-header.dinner { background: linear-gradient(135deg, #1a3a6e, #0f2347); }
+
+  .card-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.65rem;
+    font-family: 'Lora', serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+
+  .card-body {
+    padding: 22px 24px 24px;
+  }
+
+  /* ===== ACCORDION ===== */
+  .accordion {
+    margin-bottom: 12px;
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    background: var(--parchment);
+    border: 1px solid rgba(180,140,60,0.25);
+    border-radius: 3px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .accordion-trigger:hover {
+    background: #edddb0;
+  }
+
+  .accordion-arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.7rem;
+    color: var(--golden);
+  }
+
+  .accordion-trigger.open .accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .accordion-content.open {
+    max-height: 1000px;
+  }
+
+  .accordion-inner {
+    padding: 14px 4px 4px;
+  }
+
+  /* ===== INGREDIENTS ===== */
+  .ingredients-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ingredient-item {
+    background: var(--parchment);
+    border: 1px solid rgba(180,140,60,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    color: var(--warm-brown);
+    font-family: 'Lora', serif;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ingredient-item::before {
+    content: '·';
+    color: var(--golden);
+    font-weight: 900;
+  }
+
+  /* ===== INSTRUCTIONS ===== */
+  .steps-list {
+    list-style: none;
+    counter-reset: step-counter;
+  }
+
+  .step-item {
+    counter-increment: step-counter;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .step-number {
+    background: var(--deep-red);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  .card-macro {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .macro-badge {
+    background: linear-gradient(135deg, var(--olive), var(--dark-olive));
+    color: #e8f0d0;
+    font-size: 0.7rem;
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .macro-badge.high-protein { background: linear-gradient(135deg, #1a5e6e, #0f3a45); color: #c5e8ee; }
+  .macro-badge.quick { background: linear-gradient(135deg, #6e4a1a, #3d2a0f); color: #eede9a; }
+
+  /* ===== QUOTE BLOCK ===== */
+  .ratatouille-quote {
+    background: linear-gradient(135deg, var(--deep-red), #5a1010);
+    color: var(--cream);
+    padding: 32px 40px;
+    margin: 50px 0 20px;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ratatouille-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 10rem;
+    color: rgba(255,255,255,0.05);
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    line-height: 1;
+    font-style: italic;
+  }
+
+  .ratatouille-quote p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+
+  .ratatouille-quote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--golden);
+    font-style: normal;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--ink);
+    color: rgba(253,246,227,0.5);
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+  }
+
+  .footer span { color: var(--golden); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .recipe-grid { grid-template-columns: 1fr; }
+    .nav-btn { padding: 14px 16px; font-size: 0.7rem; }
+  }
+
+  /* ===== SCROLL TO TOP ===== */
+  .scroll-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--deep-red);
+    color: var(--cream);
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.2s;
+    z-index: 200;
+  }
+
+  .scroll-top:hover {
+    background: var(--bistro-red);
+    transform: translateY(-2px);
+  }
+
+  .tip-note {
+    background: #fffbef;
+    border-left: 3px solid var(--golden);
+    padding: 10px 14px;
+    margin-top: 14px;
+    border-radius: 0 3px 3px 0;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--soft-gray);
+  }
+
+  .tip-note strong { color: var(--warm-brown); font-style: normal; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-ornament">🐀👨🏽‍🍳🍽️</div>
+  <div class="header-subtitle-top">— Anyone Can Cook —</div>
+  <h1><em>Daiiv's</em> Cookbook 👨🏽‍🍳</h1>
+  <div class="header-divider"><span>✦</span></div>
+  <p class="header-tagline">From the tiny kitchen of a big dreamer — inspired by the streets of Paris, the spice of home, and the joy of eating well 🗼✨</p>
+  <div class="paris-skyline"></div>
+</div>
+
+<!-- NAV -->
+<div class="nav-container">
+  <nav class="nav">
+    <button class="nav-btn active" onclick="showSection('breakfast')">🌅 Breakfast</button>
+    <button class="nav-btn" onclick="showSection('lunch')">☀️ Lunch</button>
+    <button class="nav-btn" onclick="showSection('evening')">🌆 Evening Delights</button>
+    <button class="nav-btn" onclick="showSection('dinner')">🌙 Dinner</button>
+    <button class="nav-btn" onclick="showSection('protein')">💪 Protein Hits</button>
+    <button class="nav-btn" onclick="showSection('cheatday')">🍔 Cheat Day</button>
+  </nav>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ======== BREAKFAST ======== -->
+  <section class="meal-section active" id="breakfast">
+    <div class="section-header">
+      <span class="section-emoji">🌅</span>
+      <div class="section-title">Breakfast</div>
+      <div class="section-desc">Rise, shine & eat like a Parisian rat with ambition ✨</div>
+    </div>
+    <div class="recipe-grid">
+
+      <!-- Morning Sunny -->
+      <div class="recipe-card">
+        <div class="card-header breakfast">
+          <span class="card-emoji">🍳</span>
+          <div class="card-title">Morning Sunny</div>
+          <span class="card-tag">🥓 Classic</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">🥚 High Protein</span>
+            <span class="macro-badge quick">⚡ Quick</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Buns 🥐</li>
+                  <li class="ingredient-item">Bacon 🥓</li>
+                  <li class="ingredient-item">Cheese 🧀</li>
+                  <li class="ingredient-item">Eggs 🥚</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Fry the bacon 🥓 on medium heat until crispy. Set aside on a paper towel.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">In the same pan with the bacon fat, fry your eggs sunny side up. Season with salt & pepper 🧂.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Toast the bun lightly with a bit of butter 🧈 until golden.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Layer: bun bottom → cheese 🧀 → bacon → egg → bun top. Smash gently and enjoy! 😤</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Melt the cheese directly on the egg while it's still in the pan. Game changer.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- French Toast -->
+      <div class="recipe-card">
+        <div class="card-header breakfast">
+          <span class="card-emoji">🇫🇷🥖</span>
+          <div class="card-title">French Toast</div>
+          <span class="card-tag">🥚 Brunch Vibes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge">🍞 Comfort</span>
+            <span class="macro-badge quick">⚡ Quick</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Brioche or white bread 🍞</li>
+                  <li class="ingredient-item">Vanilla extract 🫙</li>
+                  <li class="ingredient-item">Eggs 🥚 (2-3)</li>
+                  <li class="ingredient-item">Splash of milk or heavy cream 🥛</li>
+                  <li class="ingredient-item">Cinnamon 🌿</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Maple syrup 🍁</li>
+                  <li class="ingredient-item">Powdered sugar (optional)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Whisk together eggs 🥚, a splash of milk/cream, vanilla extract, and a good pinch of cinnamon in a shallow bowl.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Dip each bread slice in the egg mixture and let it soak for 10-15 seconds per side.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Melt butter 🧈 in a pan on medium heat. Cook each slice 2-3 mins per side until golden brown.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Stack, drizzle maple syrup 🍁, dust with powdered sugar. C'est magnifique! 🇫🇷</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Brioche is the GOAT here. Heavy cream over milk makes it richer.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avocado Toast -->
+      <div class="recipe-card">
+        <div class="card-header breakfast">
+          <span class="card-emoji">🥑</span>
+          <div class="card-title">Avocado Toast</div>
+          <span class="card-tag">🌶️ Spicy Twist</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge">💚 Healthy Fats</span>
+            <span class="macro-badge quick">⚡ Quick</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Bread (any) 🍞</li>
+                  <li class="ingredient-item">Avocado 🥑</li>
+                  <li class="ingredient-item">Jalapeños 🌶️</li>
+                  <li class="ingredient-item">Onions 🧅</li>
+                  <li class="ingredient-item">Green chili 🌿</li>
+                  <li class="ingredient-item">Garlic 🧄</li>
+                  <li class="ingredient-item">Amul cheese 🧀</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                  <li class="ingredient-item">Olive oil 🫒</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Sauté diced jalapeños 🌶️, onions 🧅, green chili, and minced garlic 🧄 in olive oil until softened and fragrant.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Smash your ripe avocado 🥑 in a bowl. Season generously with salt & pepper 🧂.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Toast your bread until golden and crispy. Top with the smashed avo.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Pile on the sautéed veggies and finish with grated Amul cheese 🧀. Eat immediately.</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Add a fried egg on top for extra protein. Squeeze of lime if you have it 🍋.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Granola Açaí Bowl -->
+      <div class="recipe-card">
+        <div class="card-header breakfast">
+          <span class="card-emoji">🥣</span>
+          <div class="card-title">Granola Açaí Bowl</div>
+          <span class="card-tag">🍓 Fresh & Clean</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🌿 Clean Eats</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Granola 🌾</li>
+                  <li class="ingredient-item">Low fat Greek yogurt (vanilla) 🫙</li>
+                  <li class="ingredient-item">Chia seeds 🖤</li>
+                  <li class="ingredient-item">Mixed fruits 🍎🍓🫐</li>
+                  <li class="ingredient-item">Honey 🍯</li>
+                  <li class="ingredient-item">Coconut shavings 🥥</li>
+                  <li class="ingredient-item">Açaí packet (frozen)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Blend the frozen açaí packet until smooth (add a tiny splash of water if needed).</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Spoon Greek yogurt into your bowl as the base 🫙.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Add the açaí blend on top. Now go crazy — granola, chia seeds, fruits 🍓🍎🫐, coconut shavings 🥥.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Finish with a generous drizzle of honey 🍯. Don't rush this — it's an art.</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Freeze your bowl for 5 mins before assembling for that perfect cold crunch.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Masala Omelette -->
+      <div class="recipe-card">
+        <div class="card-header breakfast">
+          <span class="card-emoji">🍳🌶️</span>
+          <div class="card-title">Masala Omelette</div>
+          <span class="card-tag">🇮🇳 Desi Breakfast</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">🥚 High Protein</span>
+            <span class="macro-badge quick">⚡ 10 Mins</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Eggs 🥚 (3)</li>
+                  <li class="ingredient-item">Green chili 🌶️</li>
+                  <li class="ingredient-item">Onion (finely diced) 🧅</li>
+                  <li class="ingredient-item">Tomato (diced) 🍅</li>
+                  <li class="ingredient-item">Coriander/cilantro 🌿</li>
+                  <li class="ingredient-item">Turmeric pinch 🟡</li>
+                  <li class="ingredient-item">Chili powder</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Beat eggs with salt, pepper, a pinch of turmeric and chili powder.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Mix in diced onions, tomatoes, green chili, and fresh cilantro.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Melt butter in a pan on medium heat. Pour in egg mix. Let it set on the edges.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Fold in half and serve with toasted bread or roti. Hit different every time. 🔥</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Serve with ketchup and green chutney on the side for the full experience.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== LUNCH ======== -->
+  <section class="meal-section" id="lunch">
+    <div class="section-header">
+      <span class="section-emoji">☀️</span>
+      <div class="section-title">Lunch</div>
+      <div class="section-desc">Midday fuel that hits hard and tastes harder 💥</div>
+    </div>
+    <div class="recipe-grid">
+
+      <!-- Garlic Tomato Chicken -->
+      <div class="recipe-card">
+        <div class="card-header lunch">
+          <span class="card-emoji">🍗🍅</span>
+          <div class="card-title">Garlic Tomato Chicken</div>
+          <span class="card-tag">🧀 Boursin Special</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🧀 Creamy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Chicken breast 🍗</li>
+                  <li class="ingredient-item">Boursin cheese 🧀</li>
+                  <li class="ingredient-item">3 tomatoes 🍅</li>
+                  <li class="ingredient-item">2 cloves garlic 🧄</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Paprika</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Season chicken breast generously with salt, pepper, and paprika on both sides.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Sear chicken in butter 🧈 on medium-high heat, 4-5 mins per side until golden. Set aside.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">In the same pan, sauté minced garlic 🧄. Add diced tomatoes 🍅. Cook 5 mins until softened.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Add Boursin cheese 🧀 and stir until melted into a creamy sauce. Return chicken and simmer 5 mins.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Serve over rice or with crusty bread 🍞. The sauce is everything. 🤌</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Butterfly the chicken breast so it cooks evenly. No dry chicken allowed in this kitchen.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAIIV BURRITO -->
+      <div class="recipe-card">
+        <div class="card-header lunch">
+          <span class="card-emoji">🌯</span>
+          <div class="card-title">DAIIV BURRITO 🌯</div>
+          <span class="card-tag">✨ Signature Dish</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge quick">⚡ Quick</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Garlic chicken (or any chicken) 🍗</li>
+                  <li class="ingredient-item">Flour tortilla</li>
+                  <li class="ingredient-item">Lettuce 🥬</li>
+                  <li class="ingredient-item">Guac 🥑</li>
+                  <li class="ingredient-item">Sour cream</li>
+                  <li class="ingredient-item">Rice 🍚 (optional)</li>
+                  <li class="ingredient-item">Shredded cheese 🧀</li>
+                  <li class="ingredient-item">Hot sauce 🌶️</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Warm your flour tortilla in a dry pan or microwave for 20 seconds so it's pliable.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Lay down a bed of lettuce 🥬, then rice 🍚 if using, then sliced garlic chicken 🍗.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Add generous amounts of guac 🥑 and sour cream. Don't be shy. Add shredded cheese 🧀.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Fold sides in, roll tightly from bottom. Toast seam-side down in a pan for 1-2 mins for a crispy shell. 🔥</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> The toast step is non-negotiable. Makes it 10x better. Add hot sauce inside while rolling.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maggi -->
+      <div class="recipe-card">
+        <div class="card-header lunch">
+          <span class="card-emoji">🍜</span>
+          <div class="card-title">Maggi</div>
+          <span class="card-tag">🇮🇳 Nostalgia</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge quick">⚡ 5 Mins</span>
+            <span class="macro-badge">🛋️ Comfort</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Maggi packet 🍜</li>
+                  <li class="ingredient-item">Water 💧</li>
+                  <li class="ingredient-item">Butter (optional) 🧈</li>
+                  <li class="ingredient-item">Egg (optional, recommended) 🥚</li>
+                  <li class="ingredient-item">Veggies if feeling healthy 🥦</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Follow instructions on packet. Yes, actually. They know what they're doing.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">BUT — crack an egg 🥚 in during the last minute and stir. Instant upgrade.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Add a knob of butter 🧈 at the end. It's Maggi. It's perfect. Stop questioning it.</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Less water than suggested for a drier, saucier noodle. The real way to do it.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taco -->
+      <div class="recipe-card">
+        <div class="card-header lunch">
+          <span class="card-emoji">🌮</span>
+          <div class="card-title">Chicken Taco</div>
+          <span class="card-tag">🥑 Mexican Vibes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge quick">⚡ Quick</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Flour tortillas</li>
+                  <li class="ingredient-item">Chicken 🍗</li>
+                  <li class="ingredient-item">Pico de gallo 🍅</li>
+                  <li class="ingredient-item">Guac 🥑</li>
+                  <li class="ingredient-item">Sour cream</li>
+                  <li class="ingredient-item">Lime 🍋</li>
+                  <li class="ingredient-item">Cumin & chili powder</li>
+                  <li class="ingredient-item">Shredded cheese 🧀</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Season chicken 🍗 with cumin, chili powder, salt, garlic powder. Cook in a pan until slightly charred. Slice thin.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Warm tortillas directly on gas flame or in a dry pan for char marks.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Build your taco: chicken → pico → guac 🥑 → sour cream → cheese 🧀.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Squeeze lime 🍋 over everything. Eat immediately or regret it.</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Butter Chicken -->
+      <div class="recipe-card">
+        <div class="card-header lunch">
+          <span class="card-emoji">🍗🧈</span>
+          <div class="card-title">Butter Chicken</div>
+          <span class="card-tag">🇮🇳 Classic</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🍛 Rich</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Chicken breast 🍗</li>
+                  <li class="ingredient-item">Tomatoes 🍅 (3)</li>
+                  <li class="ingredient-item">Cashews 🪙</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Heavy cream 🥛</li>
+                  <li class="ingredient-item">Garam masala</li>
+                  <li class="ingredient-item">Ginger & Garlic 🧄</li>
+                  <li class="ingredient-item">Cumin, turmeric, chili powder</li>
+                  <li class="ingredient-item">Salt 🧂</li>
+                  <li class="ingredient-item">Greek yogurt (marinade)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Marinate chicken in yogurt, ginger-garlic paste, chili powder, garam masala and salt. At least 30 mins or overnight.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Cook the chicken in butter 🧈 until charred on edges. Set aside.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Blend tomatoes 🍅 and soaked cashews together until smooth. This is your secret weapon.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">In the same pan, melt butter, add spices (cumin, turmeric), then pour in the blended sauce. Cook 10 mins.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Add heavy cream 🥛, return chicken, simmer 10 more mins. Serve with naan or rice. 🙏</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> The cashews make it thick and creamy without too much cream. Don't skip them.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Keema Chicken Rice -->
+      <div class="recipe-card">
+        <div class="card-header lunch">
+          <span class="card-emoji">🍚🌶️</span>
+          <div class="card-title">Keema Chicken & Rice</div>
+          <span class="card-tag">+ Hot Cheetos on the side 🔴</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge quick">⚡ Simple</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Ground chicken (keema) 🍗</li>
+                  <li class="ingredient-item">Basmati rice 🍚</li>
+                  <li class="ingredient-item">Onion 🧅</li>
+                  <li class="ingredient-item">Garlic & ginger 🧄</li>
+                  <li class="ingredient-item">Green peas 🟢</li>
+                  <li class="ingredient-item">Cumin seeds</li>
+                  <li class="ingredient-item">Coriander powder</li>
+                  <li class="ingredient-item">Garam masala</li>
+                  <li class="ingredient-item">Chili powder 🌶️</li>
+                  <li class="ingredient-item">Salt 🧂, oil 🫒</li>
+                  <li class="ingredient-item">Hot Cheetos 🔴 (essential side)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Cook basmati rice 🍚 as usual. Season water with a little salt and cumin for fragrant rice.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Heat oil in a pan. Add cumin seeds and let them crackle. Add diced onion and cook until golden.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Add garlic-ginger and cook 1 min. Add ground chicken 🍗. Break it up and cook through, 7-8 mins.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Stir in all spices + peas. Cook another 5 mins. Taste and adjust salt 🧂.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Serve keema over rice. Bag of Hot Cheetos 🔴 on the side. This is the way. 🫡</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Squeeze lemon 🍋 over the keema before serving. The acid cuts through beautifully.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== EVENING ======== -->
+  <section class="meal-section" id="evening">
+    <div class="section-header">
+      <span class="section-emoji">🌆</span>
+      <div class="section-title">Evening Delights</div>
+      <div class="section-desc">The golden hour snacks — make them worthy of Gusteau's 🌟</div>
+    </div>
+
+    <div class="ratatouille-quote">
+      <p>"Not everyone can become a great artist, but a great artist can come from anywhere." — and the same goes for great snacks 🐀</p>
+      <cite>— Inspired by Remy & Gusteau</cite>
+    </div>
+
+    <div class="recipe-grid">
+
+      <!-- Bruschetta -->
+      <div class="recipe-card">
+        <div class="card-header evening">
+          <span class="card-emoji">🍅🥖</span>
+          <div class="card-title">Bruschetta</div>
+          <span class="card-tag">🇮🇹 Italian Classic</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge">🍅 Fresh</span>
+            <span class="macro-badge quick">⚡ Easy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Tomatoes (diced) 🍅</li>
+                  <li class="ingredient-item">Diced onion 🧅</li>
+                  <li class="ingredient-item">Garlic 🧄</li>
+                  <li class="ingredient-item">Sugar (pinch)</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                  <li class="ingredient-item">Fresh basil 🌿</li>
+                  <li class="ingredient-item">Grated cheese 🧀</li>
+                  <li class="ingredient-item">Lemon 🍋</li>
+                  <li class="ingredient-item">Hot crusty bread 🥖</li>
+                  <li class="ingredient-item">Olive oil 🫒</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Dice tomatoes 🍅 and onion finely. Mince garlic 🧄. Tear fresh basil 🌿.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Mix everything together with olive oil 🫒, a pinch of sugar, salt & pepper 🧂, and a squeeze of lemon 🍋.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Let it sit for 10-15 mins so the flavors meld. Don't skip this — it matters.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Slice and toast the bread 🥖 🔥 until golden. Pile the mix on top, finish with grated cheese 🧀.</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Rub the toasted bread with a cut garlic clove before topping. Levels it up massively.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chicken Wings - Bangalore Style -->
+      <div class="recipe-card">
+        <div class="card-header evening">
+          <span class="card-emoji">🍗🔥</span>
+          <div class="card-title">Chicken Wings — Bangalore Style</div>
+          <span class="card-tag">✈️ Air Fryer</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🌶️ Spicy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Chicken drumsticks 🍗</li>
+                  <li class="ingredient-item">Olive oil 🫒</li>
+                  <li class="ingredient-item">Greek yogurt</li>
+                  <li class="ingredient-item">Salt 🧂</li>
+                  <li class="ingredient-item">Pepper</li>
+                  <li class="ingredient-item">Chili powder 🌶️</li>
+                  <li class="ingredient-item">Garam masala</li>
+                  <li class="ingredient-item">Lemon 🍋</li>
+                  <li class="ingredient-item">Ginger-garlic paste 🧄</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Mix yogurt, olive oil 🫒, ginger-garlic paste 🧄, chili powder 🌶️, garam masala, lemon 🍋, salt & pepper. This is your marinade.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Score the drumsticks deeply and coat thoroughly in the marinade. Marinate at least 2 hrs, overnight is 🙌.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Air fry at 400°F (200°C) for 20-25 mins, flipping halfway through.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Squeeze fresh lemon 🍋 over everything. Serve with green chutney. The char is the point. 🔥</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Spray a little oil on the drumsticks right before air frying for extra crispy skin.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Peri-Peri Fries -->
+      <div class="recipe-card">
+        <div class="card-header evening">
+          <span class="card-emoji">🍟🌶️</span>
+          <div class="card-title">Peri-Peri Fries</div>
+          <span class="card-tag">🔥 Snack Attack</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge quick">⚡ Easy</span>
+            <span class="macro-badge">🍟 Addictive</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Frozen fries 🍟 (or potato)</li>
+                  <li class="ingredient-item">Peri-peri seasoning</li>
+                  <li class="ingredient-item">Garlic powder 🧄</li>
+                  <li class="ingredient-item">Paprika</li>
+                  <li class="ingredient-item">Lemon juice 🍋</li>
+                  <li class="ingredient-item">Salt 🧂</li>
+                  <li class="ingredient-item">Olive oil spray 🫒</li>
+                  <li class="ingredient-item">Grated Parmesan 🧀</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Air fry frozen fries at 400°F for 15-18 mins until crispy. Or oven bake at 425°F for 25 mins.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Toss hot fries immediately with peri-peri seasoning, garlic powder, and paprika.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Squeeze lemon 🍋 over the top and finish with grated Parmesan 🧀. That's it. Elite snack.</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Garlic mayo dip on the side. Just mix mayo + minced garlic + lemon. Finished.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== DINNER ======== -->
+  <section class="meal-section" id="dinner">
+    <div class="section-header">
+      <span class="section-emoji">🌙</span>
+      <div class="section-title">Dinner</div>
+      <div class="section-desc">End the day right. Remy would approve. 🐀✨</div>
+    </div>
+    <div class="recipe-grid">
+
+      <!-- Quesadilla -->
+      <div class="recipe-card">
+        <div class="card-header dinner">
+          <span class="card-emoji">🫓🧀</span>
+          <div class="card-title">Quesadilla</div>
+          <span class="card-tag">🌶️ Tex-Mex</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge quick">⚡ 15 Mins</span>
+            <span class="macro-badge">🧀 Cheesy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Flour tortilla</li>
+                  <li class="ingredient-item">Black beans 🫘</li>
+                  <li class="ingredient-item">Green peppers 🫑</li>
+                  <li class="ingredient-item">Onions (light) 🧅</li>
+                  <li class="ingredient-item">Jalapeños 🌶️</li>
+                  <li class="ingredient-item">Shredded cheese 🧀</li>
+                  <li class="ingredient-item">Sour cream</li>
+                  <li class="ingredient-item">Guacamole 🥑</li>
+                  <li class="ingredient-item">Texas Red Hot sauce 🌶️</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Sauté peppers 🫑, onions 🧅, and jalapeños 🌶️ in a bit of oil until softened. Season with salt & cumin.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Lay tortilla flat in a pan on medium heat. Layer shredded cheese 🧀, beans 🫘, veggies on one half.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Fold the tortilla over. Cook 2-3 mins per side until golden and crispy and cheese is fully melted.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Slice into wedges. Serve with sour cream, guac 🥑, and Texas Red Hot sauce 🌶️.</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Use two kinds of cheese — one for stretch, one for flavor. Pepper jack + cheddar = 🤌</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chilli Garlic Oil Pasta -->
+      <div class="recipe-card">
+        <div class="card-header dinner">
+          <span class="card-emoji">🌶️🍝</span>
+          <div class="card-title">Chilli Garlic Oil Pasta</div>
+          <span class="card-tag">💪 Protein Pasta</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🌶️ Spicy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Protein pasta 🍝</li>
+                  <li class="ingredient-item">Onions 🧅</li>
+                  <li class="ingredient-item">Minced garlic 🧄</li>
+                  <li class="ingredient-item">Soy sauce</li>
+                  <li class="ingredient-item">Honey 🍯</li>
+                  <li class="ingredient-item">Heavy whipping cream 🥛</li>
+                  <li class="ingredient-item">Salt 🧂 & Pepper</li>
+                  <li class="ingredient-item">Low fat mozzarella 🧀</li>
+                  <li class="ingredient-item">Chili flakes 🌶️</li>
+                  <li class="ingredient-item">Olive oil 🫒</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Cook protein pasta 🍝 al dente per package. Reserve a cup of pasta water.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">In a pan, heat olive oil 🫒 generously. Add chili flakes 🌶️ and minced garlic 🧄. Let it bloom — low heat, don't burn it.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Add diced onions 🧅. Cook until translucent. Deglaze with soy sauce and honey 🍯. Stir well.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Pour in heavy cream 🥛, add mozzarella 🧀, season with salt & pepper 🧂. Simmer until slightly thickened.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Toss in the cooked pasta. Add pasta water a splash at a time to get the right saucy consistency. Serve hot. 🔥</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> The honey + soy + chili combo is the secret. Sweet, salty, and spicy all at once. Chef's kiss. 🤌</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chicken Alfredo -->
+      <div class="recipe-card">
+        <div class="card-header dinner">
+          <span class="card-emoji">🍝🍗</span>
+          <div class="card-title">Chicken Alfredo Pasta</div>
+          <span class="card-tag">🇮🇹 Italian Night</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🥛 Creamy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Chicken breast 🍗</li>
+                  <li class="ingredient-item">Fettuccine pasta 🍝</li>
+                  <li class="ingredient-item">Heavy whipping cream 🥛</li>
+                  <li class="ingredient-item">Parmesan 🧀</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Garlic & onion powder 🧄</li>
+                  <li class="ingredient-item">Italian seasoning 🌿</li>
+                  <li class="ingredient-item">Paprika & Cajun</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                  <li class="ingredient-item">Fresh basil 🌿</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Season chicken breast 🍗 with salt, pepper, garlic powder, Italian seasoning, paprika, and Cajun. Let it sit 10 mins.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Cook pasta 🍝 al dente. Reserve pasta water.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Sear chicken in butter 🧈 until cooked through and golden — 4-5 mins per side. Rest for 5 mins, then slice thin.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">In the same pan, melt more butter 🧈. Add heavy cream 🥛 and simmer. Add parmesan 🧀 gradually, stirring constantly.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Toss in pasta, top with sliced chicken. Garnish with fresh basil 🌿 and cracked pepper. Done. 👨🏽‍🍳</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Never let the Alfredo sauce fully boil or it'll break. Keep it at a gentle simmer.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Garlic Butter Shrimp -->
+      <div class="recipe-card">
+        <div class="card-header dinner">
+          <span class="card-emoji">🍤🧄</span>
+          <div class="card-title">Garlic Butter Shrimp</div>
+          <span class="card-tag">⚡ 15-Min Dinner</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge quick">⚡ Quick</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Shrimp 🍤 (peeled)</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Garlic (6 cloves!) 🧄</li>
+                  <li class="ingredient-item">Lemon 🍋</li>
+                  <li class="ingredient-item">Paprika & chili flakes 🌶️</li>
+                  <li class="ingredient-item">Fresh parsley</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                  <li class="ingredient-item">White wine (optional)</li>
+                  <li class="ingredient-item">Crusty bread or rice 🍞</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Pat shrimp 🍤 dry. Season with paprika, salt & pepper 🧂.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Melt butter 🧈 in a pan on medium-high. Add shrimp — don't crowd them. 1-2 mins per side until pink. Remove.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Lower heat. Add more butter + minced garlic 🧄. Sauté 30 seconds — golden, not brown. Add chili flakes 🌶️.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Return shrimp, squeeze lemon 🍋, toss in fresh parsley. Serve over rice or with bread to mop up the sauce. 🍞</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Don't overcook the shrimp. When they curl into a C, they're done. O-shape means overcooked.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== PROTEIN HITS ======== -->
+  <section class="meal-section" id="protein">
+    <div class="section-header">
+      <span class="section-emoji">💪</span>
+      <div class="section-title">Protein Hits</div>
+      <div class="section-desc">Eat big, lift big, cook big 🏋️‍♂️🔥</div>
+    </div>
+    <div class="recipe-grid">
+
+      <!-- Egg White Scramble -->
+      <div class="recipe-card">
+        <div class="card-header">
+          <span class="card-emoji">🥚💪</span>
+          <div class="card-title">Egg White Scramble Bowl</div>
+          <span class="card-tag">🏋️ Macro Friendly</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 ~35g Protein</span>
+            <span class="macro-badge quick">⚡ 10 Mins</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Egg whites (6) 🥚</li>
+                  <li class="ingredient-item">1 whole egg 🥚</li>
+                  <li class="ingredient-item">Spinach 🥬</li>
+                  <li class="ingredient-item">Cherry tomatoes 🍅</li>
+                  <li class="ingredient-item">Feta cheese 🧀</li>
+                  <li class="ingredient-item">Turkey or chicken sausage</li>
+                  <li class="ingredient-item">Salt, pepper, garlic powder 🧂</li>
+                  <li class="ingredient-item">Hot sauce 🌶️</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Slice and cook the turkey/chicken sausage in a pan until browned. Set aside.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">In the same pan, wilt spinach 🥬. Add cherry tomatoes 🍅 and cook 1 min.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Whisk egg whites + whole egg with salt, pepper, garlic powder. Pour in pan. Scramble slowly on low-medium heat.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Toss sausage back in. Top with crumbled feta 🧀 and hot sauce 🌶️. High protein breakfast unlocked. 🏆</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Protein Chicken Bowl -->
+      <div class="recipe-card">
+        <div class="card-header">
+          <span class="card-emoji">🍚🍗💪</span>
+          <div class="card-title">Meal Prep Chicken Bowl</div>
+          <span class="card-tag">📦 Prep 4 Days</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 ~50g Protein</span>
+            <span class="macro-badge">📦 Meal Prep</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Chicken breast 🍗 (large)</li>
+                  <li class="ingredient-item">Brown rice or quinoa 🍚</li>
+                  <li class="ingredient-item">Black beans 🫘</li>
+                  <li class="ingredient-item">Broccoli 🥦</li>
+                  <li class="ingredient-item">Olive oil 🫒</li>
+                  <li class="ingredient-item">Lemon 🍋</li>
+                  <li class="ingredient-item">Paprika, cumin 🧂</li>
+                  <li class="ingredient-item">Garlic powder 🧄</li>
+                  <li class="ingredient-item">Sriracha or hot sauce 🌶️</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Season chicken 🍗 with paprika, cumin, garlic powder, salt, pepper and olive oil. Bake at 400°F for 22-25 mins.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Cook brown rice or quinoa 🍚. Season the cooking water with a little salt and cumin.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Roast broccoli 🥦 with olive oil and salt at 425°F for 20 mins until crispy on the edges.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Divide into 4 meal prep containers: rice → beans 🫘 → broccoli → sliced chicken. Squeeze lemon 🍋. Sriracha on the side. 💪</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Make this Sunday night. You're set for the week. Thank yourself on Wednesday.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cottage Cheese Toast -->
+      <div class="recipe-card">
+        <div class="card-header">
+          <span class="card-emoji">🍞💪</span>
+          <div class="card-title">High Protein Cottage Cheese Toast</div>
+          <span class="card-tag">🥛 No Cook</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 ~30g Protein</span>
+            <span class="macro-badge quick">⚡ 3 Mins</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Sourdough bread 🍞</li>
+                  <li class="ingredient-item">Cottage cheese (low fat)</li>
+                  <li class="ingredient-item">Cherry tomatoes 🍅</li>
+                  <li class="ingredient-item">Cucumber 🥒</li>
+                  <li class="ingredient-item">Everything bagel seasoning</li>
+                  <li class="ingredient-item">Red chili flakes 🌶️</li>
+                  <li class="ingredient-item">Olive oil drizzle 🫒</li>
+                  <li class="ingredient-item">Honey 🍯 (for sweet version)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Toast your sourdough 🍞 until extra crispy. It needs to hold the weight.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Spread a thick layer of cottage cheese. Season with everything bagel seasoning.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Top with sliced tomatoes 🍅, cucumber 🥒, chili flakes 🌶️, and a drizzle of olive oil 🫒. Done in 3 mins. Protein loaded. 💪</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Sweet version: cottage cheese + honey 🍯 + strawberries + granola. Hits the same way.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== CHEAT DAY ======== -->
+  <section class="meal-section" id="cheatday">
+    <div class="section-header">
+      <span class="section-emoji">🍔</span>
+      <div class="section-title">Cheat Day Specials</div>
+      <div class="section-desc">You earned it. Go crazy. 🔥😤</div>
+    </div>
+    <div class="recipe-grid">
+
+      <!-- Smash Burger -->
+      <div class="recipe-card">
+        <div class="card-header">
+          <span class="card-emoji">🍔💥</span>
+          <div class="card-title">Smash Burger</div>
+          <span class="card-tag">🔥 The Main Event</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge">😤 Worth It</span>
+            <span class="macro-badge high-protein">💪 Protein Packed</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">80/20 ground beef 🥩</li>
+                  <li class="ingredient-item">Brioche bun 🍔</li>
+                  <li class="ingredient-item">American cheese 🧀</li>
+                  <li class="ingredient-item">Butter 🧈</li>
+                  <li class="ingredient-item">Onion (thin sliced) 🧅</li>
+                  <li class="ingredient-item">Pickles 🥒</li>
+                  <li class="ingredient-item">Lettuce 🥬</li>
+                  <li class="ingredient-item">Tomato 🍅</li>
+                  <li class="ingredient-item">Smash sauce (mayo + ketchup + mustard + pickles + garlic)</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Form ground beef 🥩 into loosely packed 3-4oz balls. Don't compress — the loose pack is the key to the smash.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Get a cast iron or heavy pan SCREAMING hot. Add a tiny bit of butter. Place beef ball and SMASH DOWN hard with a spatula. Hold 10 seconds.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Season immediately with salt & pepper 🧂. Cook 2 mins. DON'T TOUCH IT. You want that crust.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Flip, immediately top with American cheese 🧀. Add thin onion slices on top. Cover pan 30 seconds to melt cheese.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Toast brioche bun in butter 🧈. Build: sauce → lettuce 🥬 → tomato 🍅 → pickles 🥒 → double patty stack → more sauce. 🍔</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> The smash sauce is everything. Mix mayo, ketchup, yellow mustard, diced pickles, garlic powder. Make extra. Always make extra.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loaded Nachos -->
+      <div class="recipe-card">
+        <div class="card-header">
+          <span class="card-emoji">🧀🌶️</span>
+          <div class="card-title">Loaded Nachos</div>
+          <span class="card-tag">🏠 Movie Night</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge">🎉 Party Mode</span>
+            <span class="macro-badge quick">⚡ Easy</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Tortilla chips</li>
+                  <li class="ingredient-item">Shredded cheese (lots) 🧀</li>
+                  <li class="ingredient-item">Jalapeños 🌶️</li>
+                  <li class="ingredient-item">Black beans 🫘</li>
+                  <li class="ingredient-item">Pico de gallo 🍅</li>
+                  <li class="ingredient-item">Sour cream</li>
+                  <li class="ingredient-item">Guac 🥑</li>
+                  <li class="ingredient-item">Chicken or ground beef 🍗</li>
+                  <li class="ingredient-item">Hot sauce 🌶️</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Spread chips on a baking sheet. Layer cheese 🧀, beans 🫘, and cooked seasoned meat evenly across ALL chips. Don't leave any chip dry.</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Add jalapeños 🌶️ throughout. Bake at 400°F for 8-10 mins until cheese is fully melted and bubbling.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Pull out, add cold toppings: pico 🍅, sour cream, guac 🥑, and aggressive amounts of hot sauce 🌶️.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Eat immediately. From the tray. No plates needed. No regrets. 😌</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crispy Chicken Sandwich -->
+      <div class="recipe-card">
+        <div class="card-header">
+          <span class="card-emoji">🍗🥪</span>
+          <div class="card-title">Crispy Chicken Sandwich</div>
+          <span class="card-tag">🔥 Better than Popeyes</span>
+        </div>
+        <div class="card-body">
+          <div class="card-macro">
+            <span class="macro-badge high-protein">💪 High Protein</span>
+            <span class="macro-badge">🔥 Fan Fav</span>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">🧺 Ingredients <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ul class="ingredients-list">
+                  <li class="ingredient-item">Chicken thigh (boneless) 🍗</li>
+                  <li class="ingredient-item">Buttermilk (or milk + lemon) 🥛</li>
+                  <li class="ingredient-item">Flour + cornstarch</li>
+                  <li class="ingredient-item">Paprika, garlic powder, cayenne</li>
+                  <li class="ingredient-item">Salt & Pepper 🧂</li>
+                  <li class="ingredient-item">Brioche bun 🍔</li>
+                  <li class="ingredient-item">Pickles 🥒</li>
+                  <li class="ingredient-item">Coleslaw or lettuce 🥬</li>
+                  <li class="ingredient-item">Spicy mayo (mayo + sriracha)</li>
+                  <li class="ingredient-item">Oil for frying</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">📜 Instructions <span class="accordion-arrow">▼</span></button>
+            <div class="accordion-content">
+              <div class="accordion-inner">
+                <ol class="steps-list">
+                  <li class="step-item"><span class="step-number">1</span><span class="step-text">Marinate chicken thigh in buttermilk + hot sauce for at least 1 hr (overnight is perfect). 🍗</span></li>
+                  <li class="step-item"><span class="step-number">2</span><span class="step-text">Mix flour, cornstarch (50/50), paprika, garlic powder, cayenne, salt & pepper 🧂 in a bowl. This is your breading.</span></li>
+                  <li class="step-item"><span class="step-number">3</span><span class="step-text">Dredge marinated chicken in the flour mix. Press hard so coating sticks. Let rest 5 mins.</span></li>
+                  <li class="step-item"><span class="step-number">4</span><span class="step-text">Fry in oil at 350°F for 6-7 mins per side until dark golden brown and internal temp hits 165°F.</span></li>
+                  <li class="step-item"><span class="step-number">5</span><span class="step-text">Toast brioche bun 🍔. Spread spicy mayo. Add pickles 🥒, lettuce 🥬, and that crispy legend of a chicken piece. 🏆</span></li>
+                </ol>
+                <div class="tip-note"><strong>💡 Daiiv's Tip:</strong> Cornstarch is what makes it extra crispy. Don't skip it. And don't crowd the oil — one piece at a time if needed.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="font-size:2rem; margin-bottom:12px;">🐀🍽️✨</div>
+  <p><span>Daiiv's Cookbook</span> — Made with love, butter, and a little chaos 👨🏽‍🍳</p>
+  <p style="font-size:0.75rem; margin-top:10px; opacity:0.5; font-family:'Lora',serif; letter-spacing:2px; text-transform:uppercase;">Anyone Can Cook</p>
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.meal-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({top: 80, behavior: 'smooth'});
+  }
+
+  function toggleAccordion(btn) {
+    const content = btn.nextElementSibling;
+    const isOpen = content.classList.contains('open');
+    btn.classList.toggle('open', !isOpen);
+    content.classList.toggle('open', !isOpen);
+  }
+</script>
+</body>
+</html>
