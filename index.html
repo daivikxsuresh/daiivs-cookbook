@@ -27,6 +27,7 @@
   --c-lunch: #1a7038;
   --c-evening: #6030a8;
   --c-dinner: #1838a0;
+  --c-sides: #5c7a3e;
   --c-protein: #0d6878;
   --c-cheat: #a0181e;
 }
@@ -311,6 +312,7 @@ body::after {
 .recipe-card.c-dinner    { border-left-color: var(--c-dinner); }
 .recipe-card.c-protein   { border-left-color: var(--c-protein); }
 .recipe-card.c-cheat     { border-left-color: var(--c-cheat); }
+.recipe-card.c-sides     { border-left-color: var(--c-sides); }
 
 .card-index {
   position: absolute;
@@ -649,6 +651,7 @@ body::after {
     <button class="nav-btn" onclick="showSection('dinner')">🌙 DINNER</button>
     <button class="nav-btn" onclick="showSection('protein')">💪 PROTEIN</button>
     <button class="nav-btn" onclick="showSection('cheatday')">🍔 CHEAT DAY</button>
+    <button class="nav-btn" onclick="showSection('sides')">🥔 SIDES</button>
   </nav>
 </div>
 
@@ -1115,6 +1118,72 @@ body::after {
               <li class="step-item"><span class="step-number">05</span><span class="step-text">Serve keema over rice. Bag of Hot Cheetos 🔴 on the side. This is the way. 🫡</span></li>
             </ol>
             <div class="tip-note"><strong>Daiiv's Tip —</strong> Squeeze lemon 🍋 over the keema before serving. The acid cuts through beautifully.</div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="recipe-card c-lunch">
+        <div class="card-index">07</div>
+        <div class="card-top"><span class="card-emoji">🌮🥩</span><span class="card-tag">TRADER JOE'S</span></div>
+        <div class="card-title">Carne Asada Tacos</div>
+        <div class="card-macros">
+          <span class="macro-badge hp">HIGH PROTEIN</span>
+          <span class="macro-badge quick">EASY</span>
+        </div>
+        <div class="accordion">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">INGREDIENTS <span class="accordion-arrow">▼</span></button>
+          <div class="accordion-content"><div class="accordion-inner">
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Trader Joe's Carne Asada 🥩</li>
+              <li class="ingredient-item">Corn or flour tortillas 🌮</li>
+              <li class="ingredient-item">Sautéed veggies (peppers, onion) 🫑🧅</li>
+              <li class="ingredient-item">Sour cream</li>
+              <li class="ingredient-item">Shredded lettuce 🥬</li>
+              <li class="ingredient-item">Oil, salt 🧂 &amp; pepper</li>
+            </ul>
+          </div></div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">INSTRUCTIONS <span class="accordion-arrow">▼</span></button>
+          <div class="accordion-content"><div class="accordion-inner">
+            <ol class="steps-list">
+              <li class="step-item"><span class="step-number">01</span><span class="step-text">Cook the Trader Joe's Carne Asada 🥩 in a hot pan or grill pan with a little oil. Sear 3–4 mins per side until charred at the edges. Let it rest 5 mins then slice thin against the grain.</span></li>
+              <li class="step-item"><span class="step-number">02</span><span class="step-text">In the same pan, sauté sliced peppers 🫑 and onions 🧅 with salt and pepper until softened and slightly charred.</span></li>
+              <li class="step-item"><span class="step-number">03</span><span class="step-text">Warm tortillas on the dry pan for 30 seconds each side.</span></li>
+              <li class="step-item"><span class="step-number">04</span><span class="step-text">Build your taco — sliced carne asada, sautéed veggies, shredded lettuce 🥬, and a good dollop of sour cream. Serve immediately.</span></li>
+            </ol>
+            <div class="tip-note"><strong>Daiiv's Tip —</strong> TJ's Carne Asada is already marinated — don't add extra seasoning before cooking or it'll overpower it. Let it ride. 🤌</div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="recipe-card c-lunch">
+        <div class="card-index">08</div>
+        <div class="card-top"><span class="card-emoji">🍗🍚</span><span class="card-tag">TRADER JOE'S</span></div>
+        <div class="card-title">Chicken Shawarma &amp; Rice</div>
+        <div class="card-macros">
+          <span class="macro-badge hp">HIGH PROTEIN</span>
+          <span class="macro-badge quick">SIMPLE</span>
+        </div>
+        <div class="accordion">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">INGREDIENTS <span class="accordion-arrow">▼</span></button>
+          <div class="accordion-content"><div class="accordion-inner">
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Trader Joe's Chicken Shawarma 🍗</li>
+              <li class="ingredient-item">Rice 🍚 (basmati or jasmine)</li>
+              <li class="ingredient-item">Oil, salt 🧂 &amp; pepper</li>
+            </ul>
+          </div></div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">INSTRUCTIONS <span class="accordion-arrow">▼</span></button>
+          <div class="accordion-content"><div class="accordion-inner">
+            <ol class="steps-list">
+              <li class="step-item"><span class="step-number">01</span><span class="step-text">Cook rice 🍚 according to package directions. Season the water with a pinch of salt for extra flavor.</span></li>
+              <li class="step-item"><span class="step-number">02</span><span class="step-text">Heat a pan with a little oil over medium-high. Cook the Trader Joe's Chicken Shawarma 🍗 until heated through and slightly charred — about 5–6 mins, flipping once.</span></li>
+              <li class="step-item"><span class="step-number">03</span><span class="step-text">Slice the chicken and serve over a bed of rice. Season with salt and pepper to taste.</span></li>
+            </ol>
+            <div class="tip-note"><strong>Daiiv's Tip —</strong> Add a squeeze of lemon 🍋 and some plain yogurt on the side — turns a simple plate into something proper. 🤌</div>
           </div></div>
         </div>
       </div>
@@ -1686,6 +1755,55 @@ body::after {
 </main>
 
 <!-- FOOTER -->
+  <section class="meal-section" id="sides">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div class="section-label">Section 07</div>
+      <div class="section-title">Sides</div>
+      <div class="section-desc">The supporting cast that steals the show. 🥔🌿✨</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="recipe-grid">
+
+      <div class="recipe-card c-sides">
+        <div class="card-index">01</div>
+        <div class="card-top"><span class="card-emoji">🥔🧈</span><span class="card-tag">CLASSIC SIDE</span></div>
+        <div class="card-title">Mash Potatoes</div>
+        <div class="card-macros">
+          <span class="macro-badge">CREAMY</span>
+          <span class="macro-badge">COMFORT 🤎</span>
+        </div>
+        <div class="accordion">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">INGREDIENTS <span class="accordion-arrow">▼</span></button>
+          <div class="accordion-content"><div class="accordion-inner">
+            <ul class="ingredients-list">
+              <li class="ingredient-item">Potatoes 🥔 (as many as needed)</li>
+              <li class="ingredient-item">Heavy whipping cream 🥛</li>
+              <li class="ingredient-item">Cheese 🧀 (shredded, your choice)</li>
+              <li class="ingredient-item">Salt 🧂 &amp; Pepper</li>
+              <li class="ingredient-item">Fresh rosemary 🌿</li>
+            </ul>
+          </div></div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">INSTRUCTIONS <span class="accordion-arrow">▼</span></button>
+          <div class="accordion-content"><div class="accordion-inner">
+            <ol class="steps-list">
+              <li class="step-item"><span class="step-number">01</span><span class="step-text">Boil potatoes 🥔 whole in salted water until completely tender — a fork should go in with zero resistance. About 20–25 mins.</span></li>
+              <li class="step-item"><span class="step-number">02</span><span class="step-text">Drain and peel while still hot. The skin comes off easily at this stage.</span></li>
+              <li class="step-item"><span class="step-number">03</span><span class="step-text">Mash the potatoes thoroughly — no lumps. Use a masher or fork, not a blender (that makes them gluey).</span></li>
+              <li class="step-item"><span class="step-number">04</span><span class="step-text">Pour in heavy whipping cream 🥛 gradually, mixing as you go until you reach your preferred consistency — silky and smooth.</span></li>
+              <li class="step-item"><span class="step-number">05</span><span class="step-text">Fold in shredded cheese 🧀 and season generously with salt 🧂 and pepper. Taste and adjust.</span></li>
+              <li class="step-item"><span class="step-number">06</span><span class="step-text">Top with a sprig of fresh rosemary 🌿 and serve hot alongside your main dish.</span></li>
+            </ol>
+            <div class="tip-note"><strong>Daiiv's Tip —</strong> Warm the cream before adding it — cold cream makes the mash stiff and dense. Hot cream keeps everything fluffy. 🤌</div>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 <footer class="footer">
   <div class="footer-name">Daiiv's Cookbook</div>
   <div class="footer-line">Made with love, butter & a little chaos 👨🏽‍🍳 · Anyone Can Cook · 🦀🍽️✨</div>
