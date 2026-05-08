@@ -625,6 +625,98 @@ body::after {
   .ratatouille-quote { padding: 28px 28px; }
   .ratatouille-quote p { font-size: 1.2rem; }
 }
+
+/* ═══════════════════════════════════════
+   LIVE ANIMATIONS
+═══════════════════════════════════════ */
+
+/* 1 & 2. Card float (staggered) + border glow per section color */
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* 2. Border glow — each section pulses its own color */
+@keyframes glowBreakfast {
+  0%, 100% { box-shadow: -3px 0 12px rgba(192,112,32,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(192,112,32,0.45); }
+}
+@keyframes glowLunch {
+  0%, 100% { box-shadow: -3px 0 12px rgba(26,112,56,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(26,112,56,0.45); }
+}
+@keyframes glowEvening {
+  0%, 100% { box-shadow: -3px 0 12px rgba(96,48,168,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(96,48,168,0.45); }
+}
+@keyframes glowDinner {
+  0%, 100% { box-shadow: -3px 0 12px rgba(24,56,160,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(24,56,160,0.45); }
+}
+@keyframes glowProtein {
+  0%, 100% { box-shadow: -3px 0 12px rgba(13,104,120,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(13,104,120,0.45); }
+}
+@keyframes glowCheat {
+  0%, 100% { box-shadow: -3px 0 12px rgba(160,24,30,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(160,24,30,0.45); }
+}
+@keyframes glowSides {
+  0%, 100% { box-shadow: -3px 0 12px rgba(92,122,62,0.0); }
+  50%       { box-shadow: -3px 0 18px rgba(92,122,62,0.45); }
+}
+
+.recipe-card.c-breakfast { animation: cardFloat 7s ease-in-out infinite, glowBreakfast 4s ease-in-out infinite; }
+.recipe-card.c-lunch     { animation: cardFloat 8s ease-in-out infinite, glowLunch     4s ease-in-out infinite; }
+.recipe-card.c-evening   { animation: cardFloat 7.5s ease-in-out infinite, glowEvening  4s ease-in-out infinite; }
+.recipe-card.c-dinner    { animation: cardFloat 8.5s ease-in-out infinite, glowDinner   4s ease-in-out infinite; }
+.recipe-card.c-protein   { animation: cardFloat 7s ease-in-out infinite, glowProtein   4s ease-in-out infinite; }
+.recipe-card.c-cheat     { animation: cardFloat 8s ease-in-out infinite, glowCheat     4s ease-in-out infinite; }
+.recipe-card.c-sides     { animation: cardFloat 7.5s ease-in-out infinite, glowSides   4s ease-in-out infinite; }
+
+/* stagger float delays */
+.recipe-card:nth-child(1) { animation-delay: 0s,    0s;    }
+.recipe-card:nth-child(2) { animation-delay: 1.2s,  0.4s;  }
+.recipe-card:nth-child(3) { animation-delay: 2.5s,  0.8s;  }
+.recipe-card:nth-child(4) { animation-delay: 0.7s,  1.2s;  }
+.recipe-card:nth-child(5) { animation-delay: 3.1s,  0.2s;  }
+.recipe-card:nth-child(6) { animation-delay: 1.8s,  0.6s;  }
+.recipe-card:nth-child(7) { animation-delay: 4s,    1s;    }
+.recipe-card:nth-child(8) { animation-delay: 2.3s,  0.5s;  }
+
+/* 3. Shimmer scanner — sweeps diagonally across each card */
+@keyframes shimmerSweep {
+  0%   { left: -80%; opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { left: 130%; opacity: 0.6; }
+  100% { left: 130%; opacity: 0; }
+}
+.recipe-card::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0.12) 45%,
+    rgba(255,255,255,0.22) 50%,
+    rgba(255,255,255,0.12) 55%,
+    transparent 100%
+  );
+  animation: shimmerSweep 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+.recipe-card:nth-child(1)::before { animation-delay: 0s; }
+.recipe-card:nth-child(2)::before { animation-delay: 1s; }
+.recipe-card:nth-child(3)::before { animation-delay: 2s; }
+.recipe-card:nth-child(4)::before { animation-delay: 3s; }
+.recipe-card:nth-child(5)::before { animation-delay: 4s; }
+.recipe-card:nth-child(6)::before { animation-delay: 5s; }
+.recipe-card:nth-child(7)::before { animation-delay: 0.5s; }
+.recipe-card:nth-child(8)::before { animation-delay: 1.5s; }
+
 </style>
 </head>
 <body>
