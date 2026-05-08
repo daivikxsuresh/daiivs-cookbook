@@ -128,19 +128,26 @@ body::after {
   line-height: 1;
   margin-top: -4px;
   padding-left: 4px;
-  background: linear-gradient(100deg, var(--amber-bright) 0%, #f0c040 40%, var(--amber-bright) 100%);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: fadeUp 0.7s 0.25s ease forwards, shimmer 5s 1s ease infinite;
+  color: var(--amber-bright);
+  animation: fadeUp 0.7s 0.25s ease forwards, openGlow 3s 1s ease-in-out infinite;
   opacity: 0;
 }
 
-@keyframes shimmer {
-  0%   { background-position: 100% 50%; }
-  50%  { background-position: 0%   50%; }
-  100% { background-position: 100% 50%; }
+@keyframes openGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.25),
+      0 0 18px var(--amber-bright),
+      0 0 38px var(--amber),
+      0 0 70px rgba(200,138,0,0.55);
+  }
+  50% {
+    text-shadow:
+      0 0 2px rgba(255,255,255,0.08),
+      0 0 8px var(--amber-bright),
+      0 0 18px var(--amber),
+      0 0 36px rgba(200,138,0,0.25);
+  }
 }
 
 @keyframes fadeUp {
@@ -684,38 +691,6 @@ body::after {
 .recipe-card:nth-child(7) { animation-delay: 4s,    1s;    }
 .recipe-card:nth-child(8) { animation-delay: 2.3s,  0.5s;  }
 
-/* 3. Shimmer scanner — sweeps diagonally across each card */
-@keyframes shimmerSweep {
-  0%   { left: -80%; opacity: 0; }
-  10%  { opacity: 1; }
-  60%  { left: 130%; opacity: 0.6; }
-  100% { left: 130%; opacity: 0; }
-}
-.recipe-card::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 60px;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,255,255,0.12) 45%,
-    rgba(255,255,255,0.22) 50%,
-    rgba(255,255,255,0.12) 55%,
-    transparent 100%
-  );
-  animation: shimmerSweep 6s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-.recipe-card:nth-child(1)::before { animation-delay: 0s; }
-.recipe-card:nth-child(2)::before { animation-delay: 1s; }
-.recipe-card:nth-child(3)::before { animation-delay: 2s; }
-.recipe-card:nth-child(4)::before { animation-delay: 3s; }
-.recipe-card:nth-child(5)::before { animation-delay: 4s; }
-.recipe-card:nth-child(6)::before { animation-delay: 5s; }
-.recipe-card:nth-child(7)::before { animation-delay: 0.5s; }
-.recipe-card:nth-child(8)::before { animation-delay: 1.5s; }
 
 </style>
 </head>
